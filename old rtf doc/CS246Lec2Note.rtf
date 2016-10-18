@@ -1,0 +1,105 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf470
+{\fonttbl\f0\fnil\fcharset134 PingFangSC-Regular;}
+{\colortbl;\red255\green255\blue255;\red255\green0\blue0;\red255\green128\blue0;\red0\green0\blue255;
+\red255\green0\blue255;\red128\green0\blue128;\red153\green102\blue51;\red0\green60\blue82;\red0\green45\blue153;
+}
+\margl1440\margr1440\vieww13880\viewh13400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs28 \cf0 < input redirect\
+> output redirect\
+2> stderr(stander error) redirect\
+\
+pips |\
+	- use output from one command as input for second command\
+	- e.g. head -10 file.txt | wc -w\
+	- e.g. cat words | sort | uniq\
+\
+we can also use output from one command as a parameter for another\
+	- echo \'a1\'b0abc\'a1\'b1\
+	- echo \'a1\'b0today is $(date)\'a1\'b1\
+\
+Pattern Matching(in text)\
+	-Globbing patterns\
+		- * represent any number of chars in file\
+			-e.g. ls *.txt (prints a list of all files end in .txt)\
+		- ? represent single character \
+	-Regular expressions (Regex)\
+		- way of pattern matching strings\
+			-e.g. website, JS libraries - valuable input\
+			-e.g. text editors\
+		-egrep - command line utility uses regex for files\
+egrep\
+	-egrep pattern(regular expresion) file\
+	-e.g. egrep \'a1\'b0cs246\'a1\'b1 index.shtml\
+	-() sub-expression, gets evaluated\
+		-e.g. \'a1\'b0(cs|CS)246\'a1\'b1 ->cs246/CS246\
+		-e.g. \'a1\'b0(c|C)(s|S)246\'a1\'b1\
+	-[]match a single character in brackets\
+		-e.g. \'a1\'b0text[abc]\'a1\'b1 -> texta, textb, textc\
+		-e.g. \'a1\'b0[cC][sS]246\'a1\'b1 -> cs246, CS246, cS246, Cs246\
+		-e.g. \'a1\'b0text[a-c]\'a1\'b1\'a1\'ad\
+	-[^\'a1\'ad] match any one character except these\
+		-e.g. \'a1\'b0[^A]bc\'a1\'b1 -> string without A at start\
+	-.(period) represents any single character -user for positional input\
+	-^ is begin of line, $ is end of line in a regular expression\
+		-e.g. \'a1\'b0^cs246\'a1\'b1 -> matches string only at the beginning of the line\
+	-frequency\
+		-? after the pattern represent 0 or 1 instances that pattern\
+			-e.g. \'a1\'b0^cs ?246\'a1\'b1 -> cs246 or cs 246(i.e. space)\
+		-* after a pattern represents 0 or more instances of that pattern\
+			-e.g. \'a1\'b0(cs)*246\'a1\'b1 -> 246, cs246, cscs246\'a1\'ad\
+		-+ after a pattern, represents 1 or more\
+			-e.g. \'a1\'b0(cs)+246\'a1\'b1 -> cs246, cscs246\
+	-e.g. \'a1\'b0^.*log$\'a1\'b1   ->any string ending in log\
+	-e.g. fetch lines of even length\
+		-egrep \'a1\'b0^(..)+$\'a1\'b1\
+	-e.g. list files in the current directory whose name contains only 1 \'a1\'b0a\'a1\'b1\
+		-ls -c | egrep \'a1\'b0^[^a]*(a)[^a]*$\'a1\'b1\
+			-\'b5\'da\'d2\'bb\'b2\'bf\'b7\'d6[^a]* -> 0~n\'b8\'f6\'b2\'bb\'ba\'aca\'b5\'c4\'d7\'d6\'c4\'b8\
+			-\'b5\'da\'b6\'fe\'b2\'bf\'b7\'d6(a) \'b0\'fc\'ba\'ac\'d2\'bb\'b8\'f6a\
+			-\'b5\'da\'c8\'fd\'b2\'bf\'b7\'d6[^a]* -> 0~n\'b8\'f6\'b2\'bb\'ba\'aca\'b5\'c4\'d7\'d6\'c4\'b8\
+			-*\'ce\'aa\'b9\'d8\'bc\'fc\
+	-www.rexegg.com/regex-quickstart.html\
+\
+File systems\
+	-in Unix, files and directories are structured in a tree\
+	-top node of tree is called the root(/)\
+	-all files and directories are nodes in the tree\
+	-absolute path is location of file /directory relative to the root\
+		-e.g. /u4/j2avery absolute path to my home directory\
+	-working/ current directory\
+		-directory where shell will look for files and/or operate\
+	-\cf2 d\cf0          \cf3 rwx rwx rwx \cf0          \cf4 1\cf0            \cf5 h33cheng\cf0    \cf6 h33cheng\cf0   \cf7 4096\cf0       \cf8 Dec 11\cf0        \cf9 file\cf0 \
+	\cf2 type\cf0      \cf3 permission bits\cf0    \cf4 hard link\cf0         \cf5 owner\cf0        \cf6 group\cf0       \cf7 size\cf0     \cf8 mod date \cf0   \cf9  name\cf0 \
+	\
+	-owner\
+		-primary user for a file (creator) -h33cheng(userid)\
+		-also called \'a1\'b0user\'a1\'b1\
+		-specific permissions\
+	-group\
+		-set of users with specific permissions (staff, students, admins\'a1\'ad) \
+	-rwx rwx rwx\
+		-first rwx represent the user/owner\
+		-second rwx represent the group\
+		-last rwx represent other\
+	-bit        file                                              directories\
+	-r          file contents can be read                directories contents can be read\
+												-e.g. ls\
+	-w         file contents can be modified          directories contents can be modified\
+												-e.g. create.remove file\
+	-x          file contents can be executed         directories contents can be navigated\
+												-e.g. disabling x on directories makes it unusable!\
+	\
+	-chmod -change permissions on file/dir\
+		-chmod[u, g, o] [+, -, =] [r, w, x]\
+		-e.g. chmod g+w file //add w to a group (non-destructive)\
+		-e.g. chmod u+rw file //add r and w to user\
+		-e.g. chmod u = rw file //destructive, replaces permissions for that role \
+		\
+\
+\
+\
+\
+\
+}
