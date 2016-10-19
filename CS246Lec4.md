@@ -74,7 +74,7 @@ answer(){
 
 - Compiling
 
-  - ![Screen Shot 2016-10-18 at 9.26.02 PM 1](/Users/HarryCheng/Desktop/Screen Shot 2016-10-18 at 9.26.02 PM 1.png)
+  - ![Screen Shot 2016-10-18 at 9.26.02 PM 1](./Screen Shot 2016-10-18 at 9.26.02 PM 1.png)
 
 - Input/Output
 

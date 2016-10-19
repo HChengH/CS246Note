@@ -77,7 +77,7 @@
 
   - directory where shell will look for files and/or operate
   - `ls -l`
-    - ![Screen Shot 2016-10-18 at 5.34.09 PM](/Users/HarryCheng/Desktop/Screen Shot 2016-10-18 at 5.34.09 PM.png)
+    - ![Screen Shot 2016-10-18 at 5.34.09 PM](./Screen Shot 2016-10-18 at 5.34.09 PM.png)
 
 - owner
 
@@ -109,3 +109,4 @@
     - e.g. `chmod g+w file` — add w to a group(non-destructive)
     - e.g. `chmod u+rw file` — add r and w to user
     - e.g. `chmod u = rw file` — destructive, replaces permissions for that role
+
